@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.bluejack16_2.blueprint.AddPostTextFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/addPostTextEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:hint="What's on your mind?"
+            android:padding="10dp"
+            android:scrollY="@dimen/activity_vertical_margin"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:selectAllOnFocus="false"
+            android:textColor="@color/cardview_dark_background"
+            android:textColorHint="@color/colorAccent" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/addPostTextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Publish Post"
+        android:textColor="@color/cardview_light_background" />
+
+</RelativeLayout>

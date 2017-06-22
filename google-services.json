@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "83042491781",
+    "firebase_url": "https://tpa-mobile.firebaseio.com",
+    "project_id": "tpa-mobile",
+    "storage_bucket": "tpa-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83042491781:android:454bfb8813aaacc8",
+        "android_client_info": {
+          "package_name": "com.bluejack.a162.bluprint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83042491781-b6dvdgt3o1toqg40jrtigle5c4815oet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj06V4ckeGFs7p-BouyKqYJHGQ50Mxcac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

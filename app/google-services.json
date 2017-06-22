@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "341842557874",
+    "firebase_url": "https://blueprint-12dd0.firebaseio.com",
+    "project_id": "blueprint-12dd0",
+    "storage_bucket": "blueprint-12dd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341842557874:android:d868f58114ec1d95",
+        "android_client_info": {
+          "package_name": "edu.bluejack16_2.blueprint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341842557874-hosphib4qb5kgoni518vha6gkcbgot3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGQpH81IcPbH9g0HXJ5SEqDJY6vyUbqDg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
