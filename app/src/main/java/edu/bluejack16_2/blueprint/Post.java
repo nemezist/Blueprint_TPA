@@ -33,6 +33,14 @@ public class Post {
 
     }
 
+    public Post(String postId, String userId, String postContent, int postType, long postTime){
+        this.postId = postId;
+        this.userId = userId;
+        this.postContent = postContent;
+        this.postType = postType;
+        this.postTime = postTime;
+    }
+
     public Post(String postId, String userId, String postContent, int postType){
         this.postId = postId;
         this.userId = userId;

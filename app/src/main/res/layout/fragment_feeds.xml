@@ -15,4 +15,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/postListView"
+        android:layout_below="@+id/buttonPost">
+    </ListView>
+
 </RelativeLayout>
