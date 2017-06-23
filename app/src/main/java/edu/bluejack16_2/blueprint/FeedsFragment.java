@@ -33,6 +33,7 @@ public class FeedsFragment extends Fragment {
     private final String TAG_SHOW = "ShowPost";
     ListView listView;
     PostListViewAdapter postListViewAdapter;
+    ArrayList<User> userList;
 
     public FeedsFragment() {
         // Required empty public constructor
@@ -56,50 +57,71 @@ public class FeedsFragment extends Fragment {
         listView = (ListView) v.findViewById(R.id.postListView);
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
-        Query postQuery = databaseReference;
-        postQuery.addValueEventListener(new ValueEventListener() {
+
+        DatabaseReference userReference = firebaseDatabase.getReference("users");
+        Query userQuery = userReference;
+        userQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                postListViewAdapter = new PostListViewAdapter(getContext());
+                userList = new ArrayList<User>();
+                Log.v("UsernamePost", "User list");
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    String userId = ds.child("id").getValue().toString();
+                    String username = ds.child("username").getValue().toString();
+                    String email = ds.child("email").getValue().toString();
+                    String photoUrl = ds.child("photoUrl").getValue().toString();
 
-                for(DataSnapshot ds: dataSnapshot.getChildren()) {
-//                    Post currPost = new Post();
-//                    currPost.setPostId(ds.getKey());
-//                    currPost.setPostType(Integer.parseInt(ds.child("postType").getValue().toString()));
-//                    currPost.setPostContent(ds.child("postContent").getValue().toString());
-//                    currPost.setPostTime(Long.parseLong(ds.child("postTime").getValue().toString()));
-//                    currPost.setUserId(ds.child("userId").getValue().toString());
-
-                    String postId = ds.getKey();
-                    String postContent = ds.child("postContent").getValue().toString();
-                    String userId = ds.child("userId").getValue().toString();
-                    int postType = Integer.parseInt(ds.child("postType").getValue().toString());
-                    long postTime = Long.parseLong(ds.child("postTime").getValue().toString());
-
-//                    Log.v(TAG_SHOW, currPost.getPostId());
-//                    Log.v(TAG_SHOW, "" + currPost.getPostType());
-//                    Log.v(TAG_SHOW, currPost.getPostContent());
-//                    Log.v(TAG_SHOW, "" + currPost.getPostTime());
-//                    Log.v(TAG_SHOW, currPost.getUserId());
-
-                    postListViewAdapter.addItem(postId, postContent, postType, postTime, userId);
+                    User currUser = new User(userId, email, username, photoUrl);
+                    userList.add(currUser);
                 }
 
-                listView.setAdapter(postListViewAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                DatabaseReference databaseReference = firebaseDatabase.getReference("posts");
+                Query postQuery = databaseReference;
+                postQuery.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(getContext(), ((Post)postListViewAdapter.getItem(position)).getPostContent(), Toast.LENGTH_SHORT).show();
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        postListViewAdapter = new PostListViewAdapter(getContext());
+                        Log.v("UsernamePost", userList.size() + "");
+                        for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                            String postId = ds.getKey();
+                            String postContent = ds.child("postContent").getValue().toString();
+                            String userId = ds.child("userId").getValue().toString();
+                            String username = "";
+
+                            for (User currUser: userList){
+                                if(userId.equals(currUser.getId()))
+                                    username = currUser.getUsername();
+                            }
+
+                            int postType = Integer.parseInt(ds.child("postType").getValue().toString());
+                            long postTime = Long.parseLong(ds.child("postTime").getValue().toString());
+
+                            postListViewAdapter.addItem(postId, postContent, postType, postTime, username);
+                        }
+
+                        listView.setAdapter(postListViewAdapter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Toast.makeText(getContext(), ((Post)postListViewAdapter.getItem(position)).getPostContent(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.v(TAG_SHOW, "Read failed: " + databaseError.getCode());
                     }
                 });
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.v(TAG_SHOW, "Read failed: " + databaseError.getCode());
+
             }
         });
+
+
 
         return v;
     }
