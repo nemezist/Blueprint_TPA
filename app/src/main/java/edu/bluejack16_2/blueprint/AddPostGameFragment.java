@@ -79,7 +79,6 @@ public class AddPostGameFragment extends Fragment implements DataResponse{
     @Override
     public void processFinish(JSONObject obj) {
         mProgressDialog.dismiss();
-        Toast.makeText(getContext(), "Keluar2", Toast.LENGTH_SHORT).show();
         try {
             JSONArray arr = obj.getJSONArray("results");
             for(int i = 0; i < arr.length(); i++){
@@ -93,7 +92,6 @@ public class AddPostGameFragment extends Fragment implements DataResponse{
                     postGameListViewAdapter.addItem(temp.getString("id"), temp.getString("name"), temp.getString("original_release_date").substring(0,4));
                 }
             }
-
 
 
             listView.setAdapter(postGameListViewAdapter);
