@@ -15,11 +15,9 @@ import java.net.URL;
  */
 
 public class SpotifyKey extends AsyncTask<String, Integer, String> {
-    private Exception exception;
-    private Context draw;
 
-    public SpotifyKey(Context draw) {
-        this.draw = draw;
+    public SpotifyKey() {
+
     }
 
 
@@ -60,7 +58,6 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Toast.makeText(draw, s, Toast.LENGTH_SHORT).show();
     }
 
 }
