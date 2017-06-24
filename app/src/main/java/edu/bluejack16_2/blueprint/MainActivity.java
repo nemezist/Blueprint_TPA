@@ -67,6 +67,22 @@ public class MainActivity extends AppCompatActivity
         TextView tv = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvUsernameMain);
         tv.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString();
+        String photoUrl = "";
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) {
+            photoUrl = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
+        }
+        else{
+            //photo url ambil dari firebase storage assets
+            photoUrl = "https://firebasestorage.googleapis.com/v0/b/blueprint-12dd0.appspot.com/o/images%2Fassets%2Fperson.png?alt=media&token=1f289c98-fa49-4d51-84e6-f1503517b444";
+        }
+
+        User currUser = new User(userId, email, username, photoUrl);
+        User.addUser(currUser, this);
+
         ViewPager vp = (ViewPager) findViewById(R.id.viewPagerMain);
         TabLayout tl = (TabLayout) findViewById(R.id.tabMain);
 
@@ -85,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0 ; i < adap.getCount(); i++){
             tl.getTabAt(i).setIcon(adap.getIcon(i));
         }
-        Toast.makeText(this, vp.getId() + " : " + tl.getId(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, vp.getId() + " : " + tl.getId(), Toast.LENGTH_SHORT).show();
 
     }
 
