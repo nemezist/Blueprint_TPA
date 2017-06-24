@@ -97,13 +97,13 @@ public class User implements Serializable {
             @Override
             public void onSuccess(Void aVoid) {
                 progressDialog.dismiss();
-                Toast.makeText(context, "Add user success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "User Task Success!", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Toast.makeText(context, "Add user fail!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "User Task Failed!", Toast.LENGTH_SHORT).show();
             }
         });
     }
