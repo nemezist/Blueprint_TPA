@@ -15,6 +15,7 @@ import java.net.URL;
  */
 
 public class SpotifyKey extends AsyncTask<String, Integer, String> {
+    private Exception exception;
 
     public SpotifyKey() {
 
@@ -58,6 +59,7 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String s) {
+
     }
 
 }
