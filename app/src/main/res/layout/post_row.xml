@@ -12,6 +12,14 @@
         android:layout_marginTop="20dp"
         android:text="Username" />
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/postUsernameTv"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/profileIv"
+        />
+
     <TextView
         android:id="@+id/postContentTv"
         android:layout_width="match_parent"
@@ -30,5 +38,5 @@
         android:text="TextView"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/postUsernameTv"
-        android:layout_alignEnd="@+id/postUsernameTv" />
+        android:layout_marginLeft="300dp"/>
 </RelativeLayout>

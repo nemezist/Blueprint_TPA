@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,6 +59,9 @@ public class PostListViewAdapter extends BaseAdapter {
         TextView usernameTv = (TextView) convertView.findViewById(R.id.postUsernameTv);
         TextView contentTv = (TextView) convertView.findViewById(R.id.postContentTv);
         TextView timeTv = (TextView) convertView.findViewById(R.id.postTimeTv);
+        ImageView profileIv = (ImageView) convertView.findViewById(R.id.profileIv);
+
+//        Glide.with(context).load(postList.get(position))
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd, mm yyyy");
 
