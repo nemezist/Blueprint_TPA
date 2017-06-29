@@ -68,9 +68,17 @@ public class MainActivity extends AppCompatActivity
         tv.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
-        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString();
+        String email = "";
+        String username = "";
         String photoUrl = "";
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getEmail() != null){
+            email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        }
+
+        if(FirebaseAuth.getInstance().getCurrentUser().getDisplayName() != null ){
+            username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString();
+        }
 
         if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null) {
             photoUrl = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();

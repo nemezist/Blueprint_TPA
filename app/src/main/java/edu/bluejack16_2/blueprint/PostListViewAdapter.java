@@ -63,7 +63,7 @@ public class PostListViewAdapter extends BaseAdapter {
 
 //        Glide.with(context).load(postList.get(position))
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd, mm yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd, MMM yyyy");
 
         usernameTv.setText(postList.get(position).getUserId());
         contentTv.setText(postList.get(position).getPostContent());

@@ -155,13 +155,13 @@ public class LoginFragment extends Fragment {
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+            //Toast.makeText(getContext(), "Masuk Sini", Toast.LENGTH_SHORT).show();
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-
+                Toast.makeText(getContext(), "Sign in Error : " + result.getStatus().getStatusCode(), Toast.LENGTH_SHORT).show();
             }
         }
     }
