@@ -19,11 +19,18 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 
 /**
@@ -36,6 +43,11 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
     Location location;
     ProgressDialog progressDialog;
     LocationManager lm;
+
+    DataResponse dataResponse = this;
+    PostLocationListViewAdapter locationAdapter;
+
+    ListView listView;
 
     public AddPostLocationFragment() {
         // Required empty public constructor
@@ -56,11 +68,18 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
         progressDialog.setMessage("Getting Your Location Data");
         progressDialog.setIndeterminate(true);
 
+        listView = (ListView) v.findViewById(R.id.listViewLocation);
         Button btn = (Button) v.findViewById(R.id.buttonSearchLocation);
+
+        // TODO get current location coordinates programmatically.
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                locationAdapter = new PostLocationListViewAdapter(getContext());
+                RequetsData rd = new RequetsData();
+                rd.resp = dataResponse;
+                rd.execute("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&key=AIzaSyBFC-JlSetRsng87yd4HrWfl9jo_1tlmw8");
             }
         });
 
@@ -72,18 +91,40 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
     public void processFinish(JSONObject obj) {
         progressDialog.dismiss();
 
+
         try {
-            JSONArray arr = obj.getJSONArray("results");
-            Toast.makeText(getContext(), arr.length() + "", Toast.LENGTH_SHORT).show();
 
-            StringBuilder build = new StringBuilder();
+            if(obj.getString("status") == "OK" || obj.getString("status").equals("OK")) {
+                JSONArray arr = obj.getJSONArray("results");
+                // Toast.makeText(getContext(), arr.length() + "", Toast.LENGTH_SHORT).show();
 
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject temp = arr.getJSONObject(i);
-                String str = temp.getString("id") + " : " + temp.getString("name") + "\n";
-                build.append(str);
+                StringBuilder build = new StringBuilder();
+
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject temp = arr.getJSONObject(i);
+                    JSONArray arrTypes = temp.getJSONArray("types");
+
+                    if(arrTypes.length() > 0){
+                        locationAdapter.addItem(temp.getString("place_id"),temp.getString("name"),arrTypes.getString(0).replace('_',' ').toUpperCase(Locale.ENGLISH));
+                    }
+                    else{
+                        locationAdapter.addItem(temp.getString("place_id"),temp.getString("name")," - ");
+                    }
+                }
+
+                listView.setAdapter(locationAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Post post = new Post(FirebaseAuth.getInstance().getCurrentUser().getUid(),((edu.bluejack16_2.blueprint.Location) locationAdapter.getItem(position)).getPlacesId(),Post.POST_LOCATION);
+                        Post.addPost(post,getContext());
+                    }
+                });
             }
 
+            else{
+                Toast.makeText(getContext(), "Get Location Error! : " + obj.getString("status"), Toast.LENGTH_SHORT).show();
+            }
         }catch (Exception e){
             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }

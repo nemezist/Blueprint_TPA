@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvPlacesName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15px"
+        android:text="TextView places name"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/tvPlacesType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15px"
+        android:layout_marginTop="20px"
+        android:layout_marginBottom="10px"
+        android:text="textview type"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:background="#07000000"/>
+</LinearLayout>
