@@ -22,16 +22,20 @@ import java.util.zip.Inflater;
 public class PostListViewAdapter extends BaseAdapter {
 
     ArrayList<Post> postList;
+    ArrayList<String> postedProfilePicUrl;
     Context context;
 
     public PostListViewAdapter(Context context){
         this.context = context;
         postList = new ArrayList<Post>();
+        postedProfilePicUrl = new ArrayList<String>();
     }
 
-    public void addItem(String postId, String postContent, int postType, long postTime, String userId){
+    //userId dimasukin sama username ya
+    public void addItem(String postId, String postContent, int postType, long postTime, String userId, String profileUrl){
         Post currPost = new Post(postId, userId, postContent, postType, postTime);
         postList.add(currPost);
+        postedProfilePicUrl.add(profileUrl);
     }
 
     @Override
@@ -51,6 +55,9 @@ public class PostListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Post currPost = postList.get(position);
+        String currProfPic = postedProfilePicUrl.get(position);
+
         if(convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.post_row, parent, false);
@@ -59,15 +66,46 @@ public class PostListViewAdapter extends BaseAdapter {
         TextView usernameTv = (TextView) convertView.findViewById(R.id.postUsernameTv);
         TextView contentTv = (TextView) convertView.findViewById(R.id.postContentTv);
         TextView timeTv = (TextView) convertView.findViewById(R.id.postTimeTv);
-        ImageView profileIv = (ImageView) convertView.findViewById(R.id.profileIv);
 
-//        Glide.with(context).load(postList.get(position))
+        ImageView profileIv = (ImageView) convertView.findViewById(R.id.profileIv);
+        ImageView contentIv = (ImageView) convertView.findViewById(R.id.postContentImageIv);
+
+        Glide.with(context).load(currProfPic).into(profileIv);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd, MMM yyyy");
 
-        usernameTv.setText(postList.get(position).getUserId());
-        contentTv.setText(postList.get(position).getPostContent());
-        timeTv.setText(sdf.format(new Date(postList.get(position).getPostTime())));
+        usernameTv.setText(currPost.getUserId());
+        timeTv.setText(sdf.format(new Date(currPost.getPostTime())));
+        if(currPost.getPostType() == Post.POST_TEXT){
+            contentIv.setVisibility(View.GONE);
+            contentTv.setText(currPost.getPostContent());
+        }
+        else if(currPost.getPostType() == Post.POST_IMAGE){
+            contentTv.setVisibility(View.GONE);
+            //contentTv.setText("");
+            contentIv.setVisibility(View.VISIBLE);
+            Glide.with(context).load(currPost.getPostContent()).into(contentIv);
+        }
+        else if(currPost.getPostType() == Post.POST_GAME){
+            contentIv.setVisibility(View.GONE);
+            contentTv.setVisibility(View.VISIBLE);
+            contentTv.setText("Now playing " + currPost.getPostContent());
+        }
+        else if(currPost.getPostType() == Post.POST_MOVIE){
+            contentIv.setVisibility(View.GONE);
+            contentTv.setVisibility(View.VISIBLE);
+            contentTv.setText("Now watching " + currPost.getPostContent());
+        }
+        else if(currPost.getPostType() == Post.POST_MUSIC){
+            contentIv.setVisibility(View.GONE);
+            contentTv.setVisibility(View.VISIBLE);
+            contentTv.setText("Now listening " + currPost.getPostContent());
+        }
+        else if(currPost.getPostType() == Post.POST_LOCATION){
+            contentIv.setVisibility(View.GONE);
+            contentTv.setVisibility(View.VISIBLE);
+            contentTv.setText("Now at " + currPost.getPostContent());
+        }
 
         return convertView;
     }

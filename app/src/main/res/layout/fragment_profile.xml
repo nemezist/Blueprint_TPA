@@ -5,14 +5,53 @@
     tools:context="edu.bluejack16_2.blueprint.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textviewprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="profile Fragment"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="55dp"
+
+    <ImageView
+        android:id="@+id/profileFragPictureIv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/profileFragUsernameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="Username"
+        android:layout_alignTop="@+id/profileFragPictureIv"
+        android:layout_toEndOf="@+id/profileFragPictureIv"
+        android:layout_below="@+id/profileFragPictureIv" />
+
+    <TextView
+        android:id="@+id/profileFragEmailTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:text="Email"
+        android:layout_toEndOf="@+id/profileFragPictureIv"
+        android:layout_below="@+id/profileFragUsernameTv" />
+
+    <Button
+        android:id="@+id/profileFragEditBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@+id/profileFragPictureIv"
+        android:layout_below="@+id/profileFragEmailTv"
+        android:layout_toEndOf="@+id/profileFragPictureIv" />
+
+    <ListView
+        android:id="@+id/profilePostLv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profileFragPictureIv"
+        android:layout_marginTop="25dp">
+    </ListView>
 
 </RelativeLayout>

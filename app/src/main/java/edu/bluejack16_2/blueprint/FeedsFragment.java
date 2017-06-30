@@ -57,7 +57,6 @@ public class FeedsFragment extends Fragment {
         listView = (ListView) v.findViewById(R.id.postListView);
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
         DatabaseReference userReference = firebaseDatabase.getReference("users");
         Query userQuery = userReference;
         userQuery.addValueEventListener(new ValueEventListener() {
@@ -87,16 +86,19 @@ public class FeedsFragment extends Fragment {
                             String postContent = ds.child("postContent").getValue().toString();
                             String userId = ds.child("userId").getValue().toString();
                             String username = "";
+                            String photoUrl = "";
 
                             for (User currUser: userList){
-                                if(userId.equals(currUser.getId()))
+                                if(userId.equals(currUser.getId())){
                                     username = currUser.getUsername();
+                                    photoUrl = currUser.getPhotoUrl();
+                                }
                             }
 
                             int postType = Integer.parseInt(ds.child("postType").getValue().toString());
                             long postTime = Long.parseLong(ds.child("postTime").getValue().toString());
 
-                            postListViewAdapter.addItem(postId, postContent, postType, postTime, username);
+                            postListViewAdapter.addItem(postId, postContent, postType, postTime, username, photoUrl);
                         }
 
                         listView.setAdapter(postListViewAdapter);
