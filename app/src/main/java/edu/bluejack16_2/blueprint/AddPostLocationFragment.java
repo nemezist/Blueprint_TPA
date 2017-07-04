@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
@@ -72,6 +74,7 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
         Button btn = (Button) v.findViewById(R.id.buttonSearchLocation);
 
         // TODO get current location coordinates programmatically.
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

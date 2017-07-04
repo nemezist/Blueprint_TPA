@@ -24,7 +24,7 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         usernameTv = (TextView) findViewById(R.id.editProfileUsernameTv);
-        emailTv = (TextView) findViewById(R.id.profileFragEmailTv);
+        emailTv = (TextView) findViewById(R.id.editProfileEmailTv);
 
         final FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
 
