@@ -40,8 +40,7 @@ import java.util.Locale;
  */
 public class AddPostLocationFragment extends Fragment implements DataResponse {
 
-    double longitude = -1;
-    double latitude = -1;
+
     Location location;
     ProgressDialog progressDialog;
     LocationManager lm;
@@ -53,6 +52,91 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
 
     public AddPostLocationFragment() {
         // Required empty public constructor
+    }
+
+    double longitude = -9999;
+    double latitude = -9999;
+    boolean isGPSEnabled = false, isNetworkEnabled = false,canGetLocation = false;
+
+
+    LocationManager locationManager;
+
+    public Location getLocation(){
+
+        try {
+            locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+            isGPSEnabled = locationManager.isProviderEnabled(locationManager.GPS_PROVIDER);
+            isNetworkEnabled = locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
+
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                Toast.makeText(getContext(), "Can't Get Location! \n Please turn on GPS or Network!", Toast.LENGTH_SHORT).show();
+                return null;
+            } else {
+                if (isGPSEnabled) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 100, new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) {
+
+                        }
+
+                        @Override
+                        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                        }
+
+                        @Override
+                        public void onProviderEnabled(String provider) {
+
+                        }
+
+                        @Override
+                        public void onProviderDisabled(String provider) {
+
+                        }
+                    });
+                    if(locationManager != null){
+                        return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    }
+                    else{
+                        Toast.makeText(getContext(), "location manager null", Toast.LENGTH_SHORT).show();
+                        return null;
+                    }
+                } else if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 100, new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) {
+
+                        }
+
+                        @Override
+                        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                        }
+
+                        @Override
+                        public void onProviderEnabled(String provider) {
+
+                        }
+
+                        @Override
+                        public void onProviderDisabled(String provider) {
+
+                        }
+                    });
+                    if(locationManager != null){
+                        return  locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    }
+                    else{
+                        Toast.makeText(getContext(), "location manager null", Toast.LENGTH_SHORT).show();
+                        return null;
+                    }
+                }
+            }
+        }catch (SecurityException se){
+            Toast.makeText(getContext(), "Security Exception! \n\n" + se.toString(), Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        return null;
     }
 
 
@@ -75,6 +159,11 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
 
         // TODO get current location coordinates programmatically.
 
+        final Location currentLocation = getLocation();
+
+        if(currentLocation != null){
+            Toast.makeText(getContext(), "Lat : " + currentLocation.getLatitude() + " Lon : " + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +171,7 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
                 locationAdapter = new PostLocationListViewAdapter(getContext());
                 RequetsData rd = new RequetsData();
                 rd.resp = dataResponse;
-                rd.execute("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&key=AIzaSyBFC-JlSetRsng87yd4HrWfl9jo_1tlmw8");
+                if(currentLocation != null) rd.execute("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+currentLocation.getLatitude()+","+currentLocation.getLongitude()+"&radius=500&key=AIzaSyBFC-JlSetRsng87yd4HrWfl9jo_1tlmw8");
             }
         });
 
