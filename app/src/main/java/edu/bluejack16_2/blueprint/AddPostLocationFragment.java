@@ -1,21 +1,12 @@
 package edu.bluejack16_2.blueprint;
 
-
-import android.*;
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +14,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import com.google.android.gms.location.FusedLocationProviderApi;
-import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -54,8 +40,6 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
         // Required empty public constructor
     }
 
-    double longitude = -9999;
-    double latitude = -9999;
     boolean isGPSEnabled = false, isNetworkEnabled = false,canGetLocation = false;
 
 
@@ -157,13 +141,11 @@ public class AddPostLocationFragment extends Fragment implements DataResponse {
         listView = (ListView) v.findViewById(R.id.listViewLocation);
         Button btn = (Button) v.findViewById(R.id.buttonSearchLocation);
 
-        // TODO get current location coordinates programmatically.
-
         final Location currentLocation = getLocation();
 
-        if(currentLocation != null){
-            Toast.makeText(getContext(), "Lat : " + currentLocation.getLatitude() + " Lon : " + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
-        }
+//        if(currentLocation != null){
+//            Toast.makeText(getContext(), "Lat : " + currentLocation.getLatitude() + " Lon : " + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+//        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
