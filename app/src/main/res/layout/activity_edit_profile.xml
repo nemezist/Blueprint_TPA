@@ -9,35 +9,63 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username: "
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp"
-        />
-
-    <TextView
-        android:id="@+id/editProfileUsernameTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Username"
         android:layout_marginTop="25dp"
-        android:layout_marginLeft="150dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email: "
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="25dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/editProfileUsernameEt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
         />
 
     <TextView
-        android:id="@+id/editProfileEmailTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="150dp"
+        android:text="Password"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
         />
+
+    <EditText
+        android:id="@+id/editProfilePasswordEt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:inputType="textPassword"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password"
+        android:layout_marginTop="175dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/editProfileConfirmPasswordEt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/saveProfileBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="275dp"
+        android:text="Save Profile"/>
 
 </RelativeLayout>

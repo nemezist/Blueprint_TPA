@@ -46,12 +46,31 @@
         android:layout_below="@+id/profileFragEmailTv"
         android:layout_toEndOf="@+id/profileFragPictureIv" />
 
+    <Button
+        android:id="@+id/profileFollowingBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Following"
+        android:layout_below="@+id/profileFragPictureIv"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <Button
+        android:id="@+id/profileFollowerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Followers"
+        android:layout_below="@+id/profileFragPictureIv"
+        android:layout_toEndOf="@+id/profileFollowingBtn"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"/>
+
     <ListView
         android:id="@+id/profilePostLv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/profileFragPictureIv"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="75dp">
     </ListView>
 
 </RelativeLayout>

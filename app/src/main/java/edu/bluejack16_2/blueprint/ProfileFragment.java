@@ -1,6 +1,7 @@
 package edu.bluejack16_2.blueprint;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,9 +31,10 @@ public class ProfileFragment extends Fragment {
 
     ImageView profilePicIv;
     TextView profileUsernameTv, profileEmailTv;
-    Button profileEditBtn;
+    Button profileEditBtn, followingBtn, followerBtn;
     ListView profilePostLv;
     PostListViewAdapter postListViewAdapter;
+    Context context;
 
     public ProfileFragment() {
 
@@ -48,7 +50,10 @@ public class ProfileFragment extends Fragment {
         profileUsernameTv = (TextView) v.findViewById(R.id.profileFragUsernameTv);
         profileEmailTv = (TextView) v.findViewById(R.id.profileFragEmailTv);
         profileEditBtn = (Button) v.findViewById(R.id.profileFragEditBtn);
+        followingBtn = (Button) v.findViewById(R.id.profileFollowingBtn);
+        followerBtn = (Button) v.findViewById(R.id.profileFollowerBtn);
         profilePostLv = (ListView) v.findViewById(R.id.profilePostLv);
+        context = getContext();
 
         final FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -65,7 +70,7 @@ public class ProfileFragment extends Fragment {
 
                 profileUsernameTv.setText(username);
                 profileEmailTv.setText(email);
-                Glide.with(getContext()).load(photoUrl).into(profilePicIv);
+                Glide.with(context).load(photoUrl).into(profilePicIv);
 
                 DatabaseReference postReference = firebaseDatabase.getReference("posts");
                 Query postQuery = postReference;
@@ -82,7 +87,7 @@ public class ProfileFragment extends Fragment {
                                 int postType = Integer.parseInt(ds.child("postType").getValue().toString());
                                 Long postTime = Long.parseLong(ds.child("postTime").getValue().toString());
 
-                                postListViewAdapter.addItem(postId, postContent, postType, postTime, username, photoUrl);
+                                postListViewAdapter.addItem(postId, postContent, postType, postTime, userId, username, photoUrl);
                             }
                         }
 
@@ -107,6 +112,22 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), EditProfileActivity.class);
                 startActivity(i);
+            }
+        });
+
+        followingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), ViewFollowingActivity.class);
+                i.putExtra("userId", currUser.getUid());
+                startActivity(i);
+            }
+        });
+
+        followerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

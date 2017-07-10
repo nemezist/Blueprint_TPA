@@ -35,8 +35,9 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddPostActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".ViewFollowingActivity"></activity>
     </application>
-
 
 </manifest>

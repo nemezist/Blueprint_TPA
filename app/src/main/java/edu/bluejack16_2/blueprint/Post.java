@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class Post {
 
-    String postId, userId, postContent;
+    String postId, userId, postContent, username;
     int postType;
     long postTime;
 
@@ -36,6 +36,15 @@ public class Post {
     public Post(String postId, String userId, String postContent, int postType, long postTime){
         this.postId = postId;
         this.userId = userId;
+        this.postContent = postContent;
+        this.postType = postType;
+        this.postTime = postTime;
+    }
+
+    public Post(String postId, String userId, String username, String postContent, int postType, long postTime){
+        this.postId = postId;
+        this.userId = userId;
+        this.username = username;
         this.postContent = postContent;
         this.postType = postType;
         this.postTime = postTime;
@@ -132,5 +141,13 @@ public class Post {
 
     public void setPostType(int postType) {
         this.postType = postType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

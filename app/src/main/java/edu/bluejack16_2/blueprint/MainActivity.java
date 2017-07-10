@@ -1,5 +1,6 @@
 package edu.bluejack16_2.blueprint;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,11 +23,18 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth.AuthStateListener listen;
+    String userId, email, photoUrl, username;
+    Context thisContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        thisContext = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +77,10 @@ public class MainActivity extends AppCompatActivity
         TextView tv = (TextView) navigationView.getHeaderView(0).findViewById(R.id.tvUsernameMain);
         tv.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
-        String email = "";
-        String username = "";
-        String photoUrl = "";
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        email = "";
+        username = "";
+        photoUrl = "";
 
         if(FirebaseAuth.getInstance().getCurrentUser().getEmail() != null){
             email = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
@@ -87,9 +97,26 @@ public class MainActivity extends AppCompatActivity
             //photo url ambil dari firebase storage assets
             photoUrl = "https://firebasestorage.googleapis.com/v0/b/blueprint-12dd0.appspot.com/o/images%2Fassets%2Fperson.png?alt=media&token=1f289c98-fa49-4d51-84e6-f1503517b444";
         }
+        //disini nanti
+        final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference userReference = firebaseDatabase.getReference("users/" + userId);
+        Query userQuery = userReference;
+        userQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("id").getValue() == null){
+                    User currUser = new User(userId, email, username, photoUrl);
+                    User.addUser(currUser, thisContext);
+                }
+            }
 
-        User currUser = new User(userId, email, username, photoUrl);
-        User.addUser(currUser, this);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         ViewPager vp = (ViewPager) findViewById(R.id.viewPagerMain);
         TabLayout tl = (TabLayout) findViewById(R.id.tabMain);

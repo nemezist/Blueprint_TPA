@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -47,11 +50,13 @@ public class ExploreListViewAdapter extends BaseAdapter {
 
         TextView tvUsernameExplore = (TextView) convertView.findViewById(R.id.tvUsernameExplore);
         TextView tvEmailExplore = (TextView) convertView.findViewById(R.id.tvEmailExplore);
+        ImageView profilePicIv = (ImageView) convertView.findViewById(R.id.userListRowPicIv);
 
         tvUsernameExplore.setText(userList.get(position).userDisplayName);
         tvEmailExplore.setText(userList.get(position).userEmail);
+        Glide.with(context).load(userList.get(position).photoURL).into(profilePicIv);
 
-        return  convertView;
+        return convertView;
     }
 
     public void addItem(UserExploreModel userExploreModel){

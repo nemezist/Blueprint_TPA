@@ -3,24 +3,32 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/userListRowPicIv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"/>
+
     <TextView
         android:id="@+id/tvUsernameExplore"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/userListRowPicIv"/>
 
     <TextView
         android:id="@+id/tvEmailExplore"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/tvUsernameExplore"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
         android:text="TextView"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/userListRowPicIv"/>
 </RelativeLayout>

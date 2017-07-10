@@ -32,8 +32,8 @@ public class PostListViewAdapter extends BaseAdapter {
     }
 
     //userId dimasukin sama username ya
-    public void addItem(String postId, String postContent, int postType, long postTime, String userId, String profileUrl){
-        Post currPost = new Post(postId, userId, postContent, postType, postTime);
+    public void addItem(String postId, String postContent, int postType, long postTime, String userId, String username, String profileUrl){
+        Post currPost = new Post(postId, userId, username, postContent, postType, postTime);
         postList.add(currPost);
         postedProfilePicUrl.add(profileUrl);
     }
@@ -74,7 +74,7 @@ public class PostListViewAdapter extends BaseAdapter {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd, MMM yyyy");
 
-        usernameTv.setText(currPost.getUserId());
+        usernameTv.setText(currPost.getUsername());
         timeTv.setText(sdf.format(new Date(currPost.getPostTime())));
         if(currPost.getPostType() == Post.POST_TEXT){
             contentIv.setVisibility(View.GONE);
