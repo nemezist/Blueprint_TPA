@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(thisContext, AddPostActivity.class);
+                startActivity(i);
             }
         });
 
@@ -124,14 +124,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainAdapter adap = new MainAdapter(getSupportFragmentManager());
 
-        adap.addItem(new FeedsFragment(),"Feeds", R.drawable.com_facebook_button_icon);
+        adap.addItem(new FeedsFragment(),"Feeds", R.drawable.com_facebook_send_button_icon);
         adap.addItem(new NotificationFragment(),"Notification", R.drawable.com_facebook_button_icon);
         adap.addItem(new ExploreFragment(),"Explore", R.drawable.com_facebook_button_icon);
-        adap.addItem(new ProfileFragment(),"Profile", R.drawable.com_facebook_button_icon);
+        adap.addItem(new ProfileFragment(),"Profile", R.drawable.com_facebook_profile_picture_blank_square);
 
         vp.setAdapter(adap);
         tl.setupWithViewPager(vp);
-
 
         for (int i = 0 ; i < adap.getCount(); i++){
             tl.getTabAt(i).setIcon(adap.getIcon(i));

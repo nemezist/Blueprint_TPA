@@ -45,15 +45,6 @@ public class FeedsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_feeds, container, false);
 
-        Button postBtn = (Button) v.findViewById(R.id.buttonPost);
-        postBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getContext(), AddPostActivity.class);
-                startActivity(i);
-            }
-        });
-
         listView = (ListView) v.findViewById(R.id.postListView);
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

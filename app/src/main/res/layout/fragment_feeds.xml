@@ -6,20 +6,10 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:id="@+id/buttonPost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Add Post"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/postListView"
-        android:layout_below="@+id/buttonPost">
+        android:id="@+id/postListView">
     </ListView>
 
 </RelativeLayout>
