@@ -1,5 +1,6 @@
 package edu.bluejack16_2.blueprint;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,10 +18,26 @@ import java.net.URL;
 public class SpotifyKey extends AsyncTask<String, Integer, String> {
     private Exception exception;
 
-    public SpotifyKey() {
+    private Context context;
+    private ProgressDialog prog;
 
+    public SpotifyKey() {
+        context = null;
     }
 
+    public SpotifyKey(Context context){
+        this.context = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        if(context != null){
+            prog = new ProgressDialog(context);
+            prog.setMessage("Getting Game Data");
+            prog.setIndeterminate(true);
+            prog.show();
+        }
+    }
 
     @Override
     protected String doInBackground(String... params) {
@@ -36,6 +53,7 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
                 while ((line = bufferedReader.readLine()) != null) {
                     stringBuilder.append(line).append("\n");
                 }
+
                 bufferedReader.close();
                 String ret = stringBuilder.toString();
                 return  ret.substring(new String("<!DOCTYPE html> <html>\n <head>\n" +
@@ -59,7 +77,9 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String s) {
-
+        if (prog != null) {
+            prog.hide();
+        }
     }
 
 }

@@ -127,7 +127,8 @@ public class ProfileFragment extends Fragment {
         followerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getContext(),ViewFollowersActivity.class);
+                startActivity(i);
             }
         });
 

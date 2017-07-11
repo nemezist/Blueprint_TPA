@@ -1,5 +1,7 @@
 package edu.bluejack16_2.blueprint;
 
+import android.content.Context;
+
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
@@ -22,11 +24,12 @@ public class KeyManager {
         return ourInstance;
     }
 
-    public String getKey() {
+
+    public String getKey(Context ctx) {
 
         if (key == null || new Date().getTime() - lastGenerated <= 60) {
             try {
-                key = new SpotifyKey().execute("http://himmatbinus.or.id/API").get();
+                key = new SpotifyKey(ctx).execute("http://himmatbinus.or.id/API").get();
             } catch (Exception e) {
                 e.printStackTrace();
             }

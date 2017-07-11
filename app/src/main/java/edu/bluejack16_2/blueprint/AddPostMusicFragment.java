@@ -60,12 +60,8 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
 
                 try {
                     String query = URLEncoder.encode(etSearch.getText().toString(),"UTF-8");
-                    String apiKey = new SpotifyKey().execute("http://himmatbinus.or.id/API").get();
+                    String apiKey = KeyManager.getInstance().getKey(getContext());
                     rd.execute("https://api.spotify.com/v1/search?q="+query+"&type=track",apiKey);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
                 }catch (UnsupportedEncodingException e){
                     e.printStackTrace();
                 }

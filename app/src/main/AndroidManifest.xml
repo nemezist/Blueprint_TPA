@@ -37,7 +37,8 @@
         <activity android:name=".AddPostActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".UserProfileActivity" />
-        <activity android:name=".ViewFollowingActivity"></activity>
+        <activity android:name=".ViewFollowingActivity" />
+        <activity android:name=".ViewFollowersActivity"></activity>
     </application>
 
 </manifest>
