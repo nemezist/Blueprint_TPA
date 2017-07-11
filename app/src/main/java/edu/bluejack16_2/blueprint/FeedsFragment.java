@@ -96,9 +96,9 @@ public class FeedsFragment extends Fragment {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent i = new Intent(getContext(), UserProfileActivity.class);
-                                i.putExtra("userId", ((Post)postListViewAdapter.getItem(position)).getUserId());
-                                Log.v("UserId", ((Post)postListViewAdapter.getItem(position)).getUserId());
+                                Intent i = new Intent(getContext(), DetailPostActivity.class);
+                                i.putExtra("postId", ((Post)postListViewAdapter.getItem(position)).getPostId());
+                                //Log.v("UserId", ((Post)postListViewAdapter.getItem(position)).getUserId());
                                 startActivity(i);
                                 //Toast.makeText(getContext(), ((Post)postListViewAdapter.getItem(position)).getPostContent(), Toast.LENGTH_SHORT).show();
                             }

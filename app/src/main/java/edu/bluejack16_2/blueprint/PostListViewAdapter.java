@@ -1,14 +1,26 @@
 package edu.bluejack16_2.blueprint;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +36,8 @@ public class PostListViewAdapter extends BaseAdapter {
     ArrayList<Post> postList;
     ArrayList<String> postedProfilePicUrl;
     Context context;
+    FirebaseUser currUser;
+    static int status;
 
     public PostListViewAdapter(Context context){
         this.context = context;
@@ -55,8 +69,8 @@ public class PostListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Post currPost = postList.get(position);
-        String currProfPic = postedProfilePicUrl.get(position);
+        final Post currPost = postList.get(position);
+        final String currProfPic = postedProfilePicUrl.get(position);
 
         if(convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(context);
@@ -69,6 +83,8 @@ public class PostListViewAdapter extends BaseAdapter {
 
         ImageView profileIv = (ImageView) convertView.findViewById(R.id.profileIv);
         ImageView contentIv = (ImageView) convertView.findViewById(R.id.postContentImageIv);
+
+        currUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Glide.with(context).load(currProfPic).into(profileIv);
 
