@@ -3,12 +3,16 @@ package edu.bluejack16_2.blueprint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 /**
@@ -33,7 +37,7 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
     protected void onPreExecute() {
         if(context != null){
             prog = new ProgressDialog(context);
-            prog.setMessage("Getting Game Data");
+            prog.setMessage("Getting Music Data");
             prog.setIndeterminate(true);
             prog.show();
         }
@@ -41,10 +45,26 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... params) {
+//        try {
+//
+//            URL url = new URL("https://accounts.spotify.com/api/token");
+//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//            urlConnection.setRequestMethod("POST");
+//            urlConnection.setRequestProperty("Authorization","Basic " + Base64.decode("308fcfefc1584319a428eecc03a31103:1778702977204410809e76d55dd948b9",Base64.DEFAULT));
+//
+//        } catch (ProtocolException e) {
+//            e.printStackTrace();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         try {
-            URL url = new URL(params[0]);
+            URL url = new URL("http://himmatbinus.or.id/API");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
+            urlConnection.setRequestMethod("GET");
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 StringBuilder stringBuilder = new StringBuilder();
@@ -63,7 +83,7 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
                         "\n" +
                         "\t").length()).trim().substring(0,86);
             }
-
+//
             finally{
                 urlConnection.disconnect();
             }
@@ -72,6 +92,7 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
             Log.e("ERROR", e.getMessage(), e);
             return null;
         }
+
 
     }
 

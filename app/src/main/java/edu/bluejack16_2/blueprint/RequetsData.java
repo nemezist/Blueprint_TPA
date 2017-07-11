@@ -20,7 +20,7 @@ public class RequetsData extends AsyncTask<String, String, JSONObject> {
 
     @Override
     protected void onPreExecute() {
-        resp.processRunning();
+        if(resp!=null)resp.processRunning();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class RequetsData extends AsyncTask<String, String, JSONObject> {
             String res = "";
 
             if(params.length == 2){
-                connect.setRequestProperty("Authorization","Bearer " + params[1]);
+                connect.setRequestProperty("Authorization","Bearer " + "BQCh5bamCLUF77v2EPCtdleHA3bUx8pbV3DdqUfbngLXfrKgb0yaAEpAsvlmP-5F1YwVlWR6ttARfdlBO6AZ7g");
             }
 
             BufferedReader buff = new BufferedReader(new InputStreamReader(connect.getInputStream()));
@@ -65,7 +65,8 @@ public class RequetsData extends AsyncTask<String, String, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject jsonArray) {
-        resp.processFinish(jsonArray);
+        if(resp!=null)
+            resp.processFinish(jsonArray);
     }
 
 }

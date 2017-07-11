@@ -1,6 +1,8 @@
 package edu.bluejack16_2.blueprint;
 
 
+import android.app.ProgressDialog;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -32,6 +34,10 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
     PostMusicListViewAdapter postListViewAdapter;
     ListView listView;
     EditText etSearch;
+    ProgressDialog mProgressDialog ;
+
+    MediaPlayer player;
+
 
     public AddPostMusicFragment() {
 
@@ -50,6 +56,10 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
 
         final DataResponse dataResponse = this;
 
+        mProgressDialog= new ProgressDialog(getContext());
+        mProgressDialog.setMessage("Getting Game Data");
+        mProgressDialog.setIndeterminate(true);
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +70,14 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
 
                 try {
                     String query = URLEncoder.encode(etSearch.getText().toString(),"UTF-8");
-                    String apiKey = KeyManager.getInstance().getKey(getContext());
-                    rd.execute("https://api.spotify.com/v1/search?q="+query+"&type=track",apiKey);
+                    String apiKey = "";
+                    rd.execute("https://api.spotify.com/v1/search?q="+query+"&type=track","asd");
                 }catch (UnsupportedEncodingException e){
                     e.printStackTrace();
                 }
+
+                //String key = KeyManager.getInstance().getKey(getContext());
+                //Toast.makeText(getContext(), key, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,7 +86,7 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
 
     @Override
     public void processFinish(JSONObject obj) {
-
+        mProgressDialog.dismiss();
         try {
             JSONObject objTemp = obj.getJSONObject("tracks");
             JSONArray arr = objTemp.getJSONArray("items");
@@ -101,6 +114,6 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
 
     @Override
     public void processRunning() {
-
+        mProgressDialog.show();
     }
 }

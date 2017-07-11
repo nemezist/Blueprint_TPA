@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,13 +91,14 @@ public class PostListViewAdapter extends BaseAdapter {
         else if(currPost.getPostType() == Post.POST_GAME){
             contentIv.setVisibility(View.GONE);
             contentTv.setVisibility(View.VISIBLE);
-            contentTv.setText("Now playing " + currPost.getPostContent());
+            contentTv.setText("Now playing " + FeedsContent.getGameById(convertView.getContext(),currPost.getPostContent()));
         }
         else if(currPost.getPostType() == Post.POST_MOVIE){
             contentIv.setVisibility(View.GONE);
             contentTv.setVisibility(View.VISIBLE);
-            contentTv.setText("Now watching " + currPost.getPostContent());
+            contentTv.setText("Now watching " + FeedsContent.getMovieById(convertView.getContext(),currPost.getPostContent()));
         }
+
         else if(currPost.getPostType() == Post.POST_MUSIC){
             contentIv.setVisibility(View.GONE);
             contentTv.setVisibility(View.VISIBLE);
@@ -104,7 +107,7 @@ public class PostListViewAdapter extends BaseAdapter {
         else if(currPost.getPostType() == Post.POST_LOCATION){
             contentIv.setVisibility(View.GONE);
             contentTv.setVisibility(View.VISIBLE);
-            contentTv.setText("Now at " + currPost.getPostContent());
+            contentTv.setText("Now at " +  FeedsContent.getPlacesById(convertView.getContext(),currPost.getPostContent()));
         }
 
         return convertView;
