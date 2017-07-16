@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 /**
@@ -54,11 +56,20 @@ public class PostMusicListViewAdapter extends BaseAdapter {
         TextView musicTitle = (TextView) convertView.findViewById(R.id.tvMusicTitle);
         TextView musicArtist = (TextView) convertView.findViewById(R.id.tvMusicArtist);
         Button buttonPlay = (Button) convertView.findViewById(R.id.buttonPreviewMusic);
+        Button postButton = (Button) convertView.findViewById(R.id.btnPostMusicListView);
 
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MyMedia.getInstance().playFromUrl(musics.get(position).musicURL);
+            }
+        });
+
+        postButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Post newPost = new Post(FirebaseAuth.getInstance().getCurrentUser().getUid(),musics.get(position).musicId,Post.POST_MUSIC);
+                Post.addPost(newPost,v.getContext());
             }
         });
 

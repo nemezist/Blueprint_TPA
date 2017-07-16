@@ -24,12 +24,16 @@ public class KeyManager {
         return ourInstance;
     }
 
+    public long getLastGenerated(){
+        return new Date().getTime() - lastGenerated;
+    }
 
-    public String getKey(Context ctx) {
 
-        if (key == null || new Date().getTime() - lastGenerated <= 60*1000) {
+    public String getKey() {
+
+        if (key == null || new Date().getTime() - lastGenerated >= 350*60*1000) {
             try {
-                key = new SpotifyKey(ctx).execute("http://himmatbinus.or.id/API").get();
+                key = new SpotifyKey().execute().get();
                 lastGenerated = new Date().getTime();
             } catch (Exception e) {
                 e.printStackTrace();

@@ -39,7 +39,8 @@
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".ViewFollowingActivity" />
         <activity android:name=".ViewFollowersActivity" />
-        <activity android:name=".DetailPostActivity"></activity>
+        <activity android:name=".DetailPostActivity" />
+        <activity android:name=".AddCommentActivity"></activity>
     </application>
 
 </manifest>

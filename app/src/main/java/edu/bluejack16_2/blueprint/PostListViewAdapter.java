@@ -118,7 +118,7 @@ public class PostListViewAdapter extends BaseAdapter {
         else if(currPost.getPostType() == Post.POST_MUSIC){
             contentIv.setVisibility(View.GONE);
             contentTv.setVisibility(View.VISIBLE);
-            contentTv.setText("Now listening " + currPost.getPostContent());
+            contentTv.setText("Now listening " + FeedsContent.getMusicById(convertView.getContext(),currPost.getPostContent()));
         }
         else if(currPost.getPostType() == Post.POST_LOCATION){
             contentIv.setVisibility(View.GONE);

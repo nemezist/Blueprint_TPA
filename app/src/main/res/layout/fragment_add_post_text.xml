@@ -9,13 +9,14 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_centerHorizontal="false"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:fillViewport="true"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/addPostTextBtn">
 
         <EditText
             android:id="@+id/addPostTextEt"

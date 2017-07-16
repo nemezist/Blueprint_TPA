@@ -1,6 +1,7 @@
 package edu.bluejack16_2.blueprint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,10 +33,11 @@ public class DetailPostActivity extends AppCompatActivity {
     Post currPost;
     User currUser;
     TextView usernameTv, postContentTv, postTimeTv;
-    Button likeBtn, dislikeBtn;
+    Button likeBtn, dislikeBtn, addCommentButton;
     ImageView profilePicIv, postContentIv;
     FirebaseUser currLoginUser;
     int likeStatus;
+    ListView commentLv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,21 @@ public class DetailPostActivity extends AppCompatActivity {
         postTimeTv = (TextView) findViewById(R.id.detailPostTimeTv);
         likeBtn = (Button) findViewById(R.id.detailPostLikeBtn);
         dislikeBtn = (Button) findViewById(R.id.detailPostDislikeBtn);
+        addCommentButton = (Button) findViewById(R.id.btAddComment);
         profilePicIv = (ImageView) findViewById(R.id.detailPostprofileIv);
         postContentIv = (ImageView) findViewById(R.id.detailPostContentImageIv);
+        commentLv = (ListView) findViewById(R.id.lvCommnetList);
 
         postId = getIntent().getStringExtra("postId");
+
+        addCommentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(),AddCommentActivity.class);
+                in.putExtra("postId",postId);
+                startActivity(in);
+            }
+        });
 
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference postReference = firebaseDatabase.getReference("posts/" + postId);
@@ -58,10 +73,32 @@ public class DetailPostActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userId = dataSnapshot.child("userId").getValue().toString();
+
                 String postContent = dataSnapshot.child("postContent").getValue().toString();
+
                 final long postTime = Long.parseLong(dataSnapshot.child("postTime").getValue().toString());
                 int postType = Integer.parseInt(dataSnapshot.child("postType").getValue().toString());
                 currPost = new Post(postId, userId, postContent, postType, postTime);
+
+                if(currPost.getPostType() == Post.POST_GAME){
+                    String postSet = FeedsContent.getGameById(getApplicationContext(),postContent);
+                    currPost.setPostContent(postSet);
+                }
+
+                if(currPost.getPostType() == Post.POST_MUSIC){
+                    String postSet = FeedsContent.getMusicById(getApplicationContext(),postContent);
+                    currPost.setPostContent(postSet);
+                }
+
+                if(currPost.getPostType() == Post.POST_LOCATION){
+                    String postSet = FeedsContent.getPlacesById(getApplicationContext(),postContent);
+                    currPost.setPostContent(postSet);
+                }
+
+                if(currPost.getPostType() == Post.POST_MOVIE){
+                    String postSet = FeedsContent.getMovieById(getApplicationContext(),postContent);
+                    currPost.setPostContent(postSet);
+                }
 
                 DatabaseReference userReference = firebaseDatabase.getReference("users/" + userId);
                 Query postQuery = userReference;
@@ -171,6 +208,27 @@ public class DetailPostActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        postReference = firebaseDatabase.getReference("posts/" + postId + "/comments/");
+        postQuery = postReference;
+        postQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                PostCommentListViewAdapter adap = new PostCommentListViewAdapter(getApplicationContext());
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    //Toast.makeText(DetailPostActivity.this, ds.child("userId").getValue().toString() + " : " +ds.child("commentContent").getValue().toString(), Toast.LENGTH_SHORT).show();
+                    adap.addItem(ds.child("userId").getValue().toString(),ds.child("commentContent").getValue().toString());
+                }
+                //Toast.makeText(DetailPostActivity.this, adap.getCount() + "", Toast.LENGTH_SHORT).show();
+
+                commentLv.setAdapter(adap);
             }
 
             @Override

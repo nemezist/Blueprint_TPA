@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adap.addItem(new ExploreFragment(),"Explore", R.drawable.com_facebook_button_icon);
         adap.addItem(new ProfileFragment(),"Profile", R.drawable.com_facebook_profile_picture_blank_square);
 
+        String s = KeyManager.getInstance().getKey();
+
         vp.setAdapter(adap);
         tl.setupWithViewPager(vp);
 
