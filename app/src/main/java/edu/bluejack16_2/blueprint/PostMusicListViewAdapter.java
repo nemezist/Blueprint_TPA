@@ -70,8 +70,8 @@ public class PostMusicListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Post newPost = new Post(FirebaseAuth.getInstance().getCurrentUser().getUid(),musics.get(position).musicId,Post.POST_MUSIC);
                 Post.addPost(newPost,v.getContext());
-            }
-        });
+    }
+});
 
         musicTitle.setText(musics.get(position).musicTitle);
         musicArtist.setText(musics.get(position).musicArtist);
