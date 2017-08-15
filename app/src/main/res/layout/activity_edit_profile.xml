@@ -48,24 +48,26 @@
         android:text="Confirm Password"
         android:layout_marginTop="175dp"
         android:layout_centerHorizontal="true"
-        />
+        android:id="@+id/textView3" />
 
     <EditText
         android:id="@+id/editProfileConfirmPasswordEt"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        />
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/editProfilePasswordEt" />
 
     <Button
         android:id="@+id/saveProfileBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="275dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:text="Save Profile"/>
 
 </RelativeLayout>

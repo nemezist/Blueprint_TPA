@@ -7,17 +7,17 @@
         android:id="@+id/userListRowPicIv"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:id="@+id/tvUsernameExplore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="25dp"
         android:text="TextView"
-        android:textSize="20sp"
         android:layout_toEndOf="@+id/userListRowPicIv"/>
 
     <TextView
@@ -25,10 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvUsernameExplore"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="25dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12dp"
         android:text="TextView"
-        android:textSize="20sp"
         android:layout_toEndOf="@+id/userListRowPicIv"/>
 </RelativeLayout>

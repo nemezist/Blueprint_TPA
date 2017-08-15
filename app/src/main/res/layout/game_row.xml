@@ -4,19 +4,25 @@
 
     <TextView
         android:id="@+id/tvGameTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:text="Game Title" />
 
     <TextView
         android:id="@+id/tvReleaseYear"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="15dp"
         android:text="Game Release Year"
+        android:textSize="10dp"
         android:layout_below="@+id/tvGameTitle"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

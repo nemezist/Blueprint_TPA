@@ -21,7 +21,7 @@
             android:id="@+id/addPostTextEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:background="@color/imageViewBackground"
             android:hint="What's on your mind?"
             android:padding="10dp"
             android:scrollY="@dimen/activity_vertical_margin"
@@ -39,8 +39,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
         android:text="Publish Post"
         android:textColor="@color/cardview_light_background" />
 

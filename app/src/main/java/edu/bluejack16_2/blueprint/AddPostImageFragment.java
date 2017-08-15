@@ -93,6 +93,7 @@ public class AddPostImageFragment extends Fragment {
 //                    Toast.makeText(getContext(), filePath, Toast.LENGTH_SHORT).show();
 
                     iv.setBackground(d);
+                    iv.setVisibility(View.VISIBLE);
 
                     FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
                     StorageReference storageReference = firebaseStorage.getReference();

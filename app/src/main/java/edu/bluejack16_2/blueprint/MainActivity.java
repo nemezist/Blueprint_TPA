@@ -124,10 +124,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainAdapter adap = new MainAdapter(getSupportFragmentManager());
 
-        adap.addItem(new FeedsFragment(),"Feeds", R.drawable.com_facebook_send_button_icon);
-        adap.addItem(new NotificationFragment(),"Notification", R.drawable.com_facebook_button_icon);
-        adap.addItem(new ExploreFragment(),"Explore", R.drawable.com_facebook_button_icon);
-        adap.addItem(new ProfileFragment(),"Profile", R.drawable.com_facebook_profile_picture_blank_square);
+        adap.addItem(new FeedsFragment(),"Feeds", R.drawable.home);
+        adap.addItem(new NotificationFragment(),"Notification", R.drawable.notif);
+        adap.addItem(new ExploreFragment(),"Explore", R.drawable.search);
+        adap.addItem(new ProfileFragment(),"Profile", R.drawable.profile);
 
         vp.setAdapter(adap);
         tl.setupWithViewPager(vp);
