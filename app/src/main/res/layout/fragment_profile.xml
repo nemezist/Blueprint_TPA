@@ -24,7 +24,8 @@
         android:text="Username"
         android:layout_alignTop="@+id/profileFragPictureIv"
         android:layout_toEndOf="@+id/profileFragPictureIv"
-        android:layout_below="@+id/profileFragPictureIv" />
+        android:layout_below="@+id/profileFragPictureIv"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/profileFragEmailTv"
@@ -34,7 +35,8 @@
         android:layout_marginTop="10dp"
         android:text="Email"
         android:layout_toEndOf="@+id/profileFragPictureIv"
-        android:layout_below="@+id/profileFragUsernameTv" />
+        android:layout_below="@+id/profileFragUsernameTv"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/profileFragEditBtn"

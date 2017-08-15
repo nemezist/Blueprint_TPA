@@ -97,7 +97,7 @@ public class AddPostMovieFragment extends Fragment implements DataResponse{
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getContext(), ((Movie) postMovieListViewAdapter.getItem(position)).movieTitle, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), ((Movie) postMovieListViewAdapter.getItem(position)).movieTitle, Toast.LENGTH_SHORT).show();
                     Post newPost = new Post(FirebaseAuth.getInstance().getCurrentUser().getUid(), ((Movie) postMovieListViewAdapter.getItem(position)).movieId, Post.POST_MOVIE);
                     Post.addPost(newPost, getContext());
                 }

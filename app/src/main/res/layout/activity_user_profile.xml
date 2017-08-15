@@ -23,7 +23,8 @@
         android:text="Username"
         android:layout_alignTop="@+id/userProfilePictureIv"
         android:layout_toEndOf="@+id/userProfilePictureIv"
-        android:layout_below="@+id/userProfilePictureIv" />
+        android:layout_below="@+id/userProfilePictureIv"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/userProfileEmailTv"
@@ -33,17 +34,20 @@
         android:layout_marginTop="10dp"
         android:text="Email"
         android:layout_toEndOf="@+id/userProfilePictureIv"
-        android:layout_below="@+id/userProfileUsernameTv" />
+        android:layout_below="@+id/userProfileUsernameTv"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/userProfileEditBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
         android:text="Follow User"
         android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:layout_alignBottom="@+id/userProfilePictureIv"
-        android:layout_below="@+id/userProfileEmailTv"
         android:layout_toEndOf="@+id/userProfilePictureIv" />
 
     <ListView

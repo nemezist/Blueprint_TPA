@@ -11,8 +11,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:hint="Search your movie"
+        android:hint="Search Your Movie"
         android:inputType="text"
+        android:textSize="15dp"
         android:layout_centerHorizontal="true" />
 
     <Button

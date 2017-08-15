@@ -10,7 +10,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Username" />
+        android:text="Username"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:layout_width="30dp"
@@ -33,7 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:layout_marginLeft="150dp" />
+            android:layout_marginLeft="150dp"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
     <TextView
@@ -46,7 +48,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"/>
     
     <ImageView
         android:id="@+id/postContentImageIv"

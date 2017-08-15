@@ -98,7 +98,7 @@ public class AddPostGameFragment extends Fragment implements DataResponse{
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getContext(), ((Game) postGameListViewAdapter.getItem(position)).gameTitle, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), ((Game) postGameListViewAdapter.getItem(position)).gameTitle, Toast.LENGTH_SHORT).show();
                     Post newPost = new Post(FirebaseAuth.getInstance().getCurrentUser().getUid(), ((Game)postGameListViewAdapter.getItem(position)).gameID, Post.POST_GAME);
                     Post.addPost(newPost, getContext());
                 }
@@ -112,6 +112,6 @@ public class AddPostGameFragment extends Fragment implements DataResponse{
     @Override
     public void processRunning() {
         mProgressDialog.show();
-        Toast.makeText(getContext(), "Keluar", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Keluar", Toast.LENGTH_SHORT).show();
     }
 }

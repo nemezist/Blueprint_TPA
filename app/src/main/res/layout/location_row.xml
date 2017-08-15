@@ -9,7 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Textview"/>
 
     <TextView
         android:id="@+id/tvPlacesType"
@@ -20,6 +23,5 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
         android:text="textview type"
-        android:textStyle="italic"
-        android:background="@color/imageViewBackground"/>
+        android:textStyle="italic" />
 </LinearLayout>

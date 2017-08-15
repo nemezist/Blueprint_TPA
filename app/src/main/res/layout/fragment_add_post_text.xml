@@ -12,11 +12,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:visibility="visible"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/addPostTextBtn">
+        android:clipToPadding="false">
 
         <EditText
             android:id="@+id/addPostTextEt"
@@ -25,17 +21,17 @@
             android:background="@color/imageViewBackground"
             android:hint="What's on your mind?"
             android:padding="10dp"
-            android:scrollY="@dimen/activity_vertical_margin"
+            android:textSize="15dp"
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:selectAllOnFocus="false"
-            android:textColor="@color/cardview_dark_background"
-            android:textColorHint="@color/colorAccent" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
     </ScrollView>
 
     <Button
         android:id="@+id/addPostTextBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_below="@+id/scrollView2"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"

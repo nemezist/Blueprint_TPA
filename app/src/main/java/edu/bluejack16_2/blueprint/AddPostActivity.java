@@ -20,12 +20,12 @@ public class AddPostActivity extends AppCompatActivity {
 
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
 
-        mainAdapter.addItem(new AddPostTextFragment(), "Text", R.drawable.location_icon);
-        mainAdapter.addItem(new AddPostImageFragment(),"Image",R.drawable.location_icon);
-        mainAdapter.addItem(new AddPostGameFragment(), "Game", R.drawable.location_icon);
-        mainAdapter.addItem(new AddPostMovieFragment(), "Movie", R.drawable.location_icon);
-        mainAdapter.addItem(new AddPostMusicFragment(), "Music", R.drawable.location_icon);
-        mainAdapter.addItem(new AddPostLocationFragment(), "Location", R.drawable.location_icon);
+        mainAdapter.addItem(new AddPostTextFragment(), "Text", R.drawable.text_post);
+        mainAdapter.addItem(new AddPostImageFragment(),"Image",R.drawable.image_post);
+        mainAdapter.addItem(new AddPostGameFragment(), "Game", R.drawable.game_post);
+        mainAdapter.addItem(new AddPostMovieFragment(), "Movie", R.drawable.movie_post);
+        mainAdapter.addItem(new AddPostMusicFragment(), "Music", R.drawable.music_post);
+        mainAdapter.addItem(new AddPostLocationFragment(), "Location", R.drawable.location_post);
 
         viewPager.setAdapter(mainAdapter);
         tabLayout.setupWithViewPager(viewPager);

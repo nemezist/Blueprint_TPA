@@ -18,9 +18,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,9 +37,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth.AuthStateListener listen;
     String userId, email, photoUrl, username;
     Context thisContext;
+    ImageView mainProfilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mainProfilePic = (ImageView) findViewById(R.id.imageView);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -116,8 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-
         ViewPager vp = (ViewPager) findViewById(R.id.viewPagerMain);
         TabLayout tl = (TabLayout) findViewById(R.id.tabMain);
 
@@ -125,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MainAdapter adap = new MainAdapter(getSupportFragmentManager());
 
         adap.addItem(new FeedsFragment(),"Feeds", R.drawable.home);
-        adap.addItem(new NotificationFragment(),"Notification", R.drawable.notif);
         adap.addItem(new ExploreFragment(),"Explore", R.drawable.search);
         adap.addItem(new ProfileFragment(),"Profile", R.drawable.profile);
 
@@ -138,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tl.getTabAt(i).setIcon(adap.getIcon(i));
         }
         //Toast.makeText(this, vp.getId() + " : " + tl.getId(), Toast.LENGTH_SHORT).show();
-
     }
 
     void goToFront(){

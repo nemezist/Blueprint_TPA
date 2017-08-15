@@ -14,7 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Username" />
+        android:text="Username"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:layout_width="30dp"
@@ -37,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:layout_marginLeft="150dp" />
+            android:layout_marginLeft="150dp"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
     <TextView
@@ -50,7 +52,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"/>
 
     <ImageView
         android:id="@+id/detailPostContentImageIv"
@@ -73,6 +76,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="250dp"
         android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:text="Like" />
 
     <Button
@@ -84,26 +88,25 @@
         android:layout_marginTop="250dp"
         android:layout_toEndOf="@+id/detailPostLikeBtn"
         android:background="@color/colorPrimary"
+        android:textColor="@color/white"
         android:text="Dislike" />
 
     <Button
         android:id="@+id/btAddComment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="25dp"
         android:background="@color/colorPrimary"
-        android:text="Add Comment"
-        android:layout_alignBaseline="@+id/detailPostDislikeBtn"
+        android:text="Comment"
         android:layout_alignBottom="@+id/detailPostDislikeBtn"
+        android:textColor="@color/white"
         android:layout_toEndOf="@+id/detailPostDislikeBtn" />
 
     <ListView
         android:id="@+id/lvCommnetList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btAddComment"
-        android:layout_alignStart="@+id/detailPostLikeBtn"
-        android:layout_marginTop="26dp"
-        android:layout_alignEnd="@+id/detailPostContentImageIv" />
+        android:layout_below="@+id/detailPostLikeBtn"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/white"
-        android:text="Load Location" />
+        android:text="Load Current Location" />
 
     <ListView
         android:id="@+id/listViewLocation"

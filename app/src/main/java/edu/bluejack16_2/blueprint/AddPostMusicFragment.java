@@ -57,7 +57,7 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
         final DataResponse dataResponse = this;
 
         mProgressDialog= new ProgressDialog(getContext());
-        mProgressDialog.setMessage("Getting Game Data");
+        mProgressDialog.setMessage("Getting Music Data");
         mProgressDialog.setIndeterminate(true);
 
         //Toast.makeText(getContext(), KeyManager.getInstance().getLastGenerated() + "", Toast.LENGTH_SHORT).show();
