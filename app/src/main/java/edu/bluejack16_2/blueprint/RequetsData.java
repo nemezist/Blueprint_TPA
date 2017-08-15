@@ -37,7 +37,7 @@ public class RequetsData extends AsyncTask<String, String, JSONObject> {
             String res = "";
 
             if(params.length == 2){
-                connect.setRequestProperty("Authorization","Bearer " + "BQCh5bamCLUF77v2EPCtdleHA3bUx8pbV3DdqUfbngLXfrKgb0yaAEpAsvlmP-5F1YwVlWR6ttARfdlBO6AZ7g");
+                connect.setRequestProperty("Authorization","Bearer " + KeyManager.getInstance().getKey());
             }
 
             BufferedReader buff = new BufferedReader(new InputStreamReader(connect.getInputStream()));

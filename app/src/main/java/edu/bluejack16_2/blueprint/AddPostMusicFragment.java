@@ -60,6 +60,9 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
         mProgressDialog.setMessage("Getting Game Data");
         mProgressDialog.setIndeterminate(true);
 
+        //Toast.makeText(getContext(), KeyManager.getInstance().getLastGenerated() + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), KeyManager.getInstance().getKey(), Toast.LENGTH_SHORT).show();
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,8 +79,6 @@ public class AddPostMusicFragment extends Fragment implements DataResponse{
                     e.printStackTrace();
                 }
 
-                //String key = KeyManager.getInstance().getKey(getContext());
-                //Toast.makeText(getContext(), key, Toast.LENGTH_SHORT).show();
             }
         });
 

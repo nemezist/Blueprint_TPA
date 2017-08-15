@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adap.addItem(new ExploreFragment(),"Explore", R.drawable.search);
         adap.addItem(new ProfileFragment(),"Profile", R.drawable.profile);
 
+        String s = KeyManager.getInstance().getKey();
+
         vp.setAdapter(adap);
         tl.setupWithViewPager(vp);
 

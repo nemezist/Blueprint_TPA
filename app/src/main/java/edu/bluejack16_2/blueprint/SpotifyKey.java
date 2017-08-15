@@ -22,27 +22,6 @@ import java.net.URL;
 public class SpotifyKey extends AsyncTask<String, Integer, String> {
     private Exception exception;
 
-    private Context context;
-    private ProgressDialog prog;
-
-    public SpotifyKey() {
-        context = null;
-    }
-
-    public SpotifyKey(Context context){
-        this.context = context;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        if(context != null){
-            prog = new ProgressDialog(context);
-            prog.setMessage("Getting Music Data");
-            prog.setIndeterminate(true);
-            prog.show();
-        }
-    }
-
     @Override
     protected String doInBackground(String... params) {
 //        try {
@@ -65,28 +44,26 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setRequestMethod("GET");
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
 
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
-                }
 
-                bufferedReader.close();
-                String ret = stringBuilder.toString();
-                return  ret.substring(new String("<!DOCTYPE html> <html>\n <head>\n" +
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+
+            bufferedReader.close();
+            String ret = stringBuilder.toString();
+            urlConnection.disconnect();
+
+            return  ret.substring(new String("<!DOCTYPE html> <html>\n <head>\n" +
                         "\t<title>Asd</title>\n" +
                         "</head>\n" +
                         "<body>\n" +
                         "\n" +
                         "\t").length()).trim().substring(0,86);
-            }
-//
-            finally{
-                urlConnection.disconnect();
-            }
         }
         catch(Exception e) {
             Log.e("ERROR", e.getMessage(), e);
@@ -96,11 +73,6 @@ public class SpotifyKey extends AsyncTask<String, Integer, String> {
 
     }
 
-    @Override
-    protected void onPostExecute(String s) {
-        if (prog != null) {
-            prog.hide();
-        }
-    }
+
 
 }
